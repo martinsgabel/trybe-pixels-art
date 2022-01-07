@@ -8,18 +8,32 @@ for (let i = 0; i < 5; i += 1) {
         
         pixelBoard.appendChild(pixelUnit);
     }
+    let breakPoint = document.createElement('br');
+    pixelBoard.appendChild(breakPoint);
 }
 
 //selecionando a cor Preta inicialmente
 let firstSelected = document.querySelector('.a');
 firstSelected.classList.add('selected');
 
+
+
+
+
+
+
 //escutador de Eventos, clique na cor
 let clickedColor = document.getElementsByClassName("color");
 
-clickedColor.addEventListener("click", recebeClick);
+for (i = 0; i < clickedColor.length; i += 1) {
+    clickedColor[i].addEventListener('change', recebeClick);
+    console.log(clickedColor[i]);
+}
+
+let selectedColor = clickedColor[i];
 
 function recebeClick() {
-    let firstSelected = document.querySelector('.a');
-    firstSelected.classList.add('selected');
+    
+    firstSelected.classList.remove('selected');
+    selectedColor.classList.add('selected');
 }
