@@ -57,13 +57,12 @@ for (let w = 0; w < selectedPixel.length; w++) {
 //APAGANDO
 
 function cleanBoard () {
-    for (let z = 0; z < 5; z++) {
-        for (let x = 0; x < 5; x++) {
-            pixel[z,x]
-        }
+    for (let z = 0; z < qtdPixel.length; z++) {
+        qtdPixel[z].style.backgroundColor = "white";
     }
 }
 
 let apagaBtn = document.getElementById("clear-board");
+const qtdPixel = document.getElementsByClassName("pixel");
 
 apagaBtn.addEventListener("click", cleanBoard);
