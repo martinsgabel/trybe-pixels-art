@@ -1,4 +1,4 @@
-let pixelBoard = document.querySelector('#pixel-board');
+var pixelBoard = document.querySelector('#pixel-board');
 
 //descobri como adicionar uma classe juntamente com o elemento com a ajuda de uma resposta desta fonte: https://stackoverflow.com/questions/55224589/document-createelementdiv-with-a-class 
 for (let i = 0; i < 5; i += 1) {
@@ -12,28 +12,58 @@ for (let i = 0; i < 5; i += 1) {
     pixelBoard.appendChild(breakPoint);
 }
 
-//selecionando a cor Preta inicialmente
-let firstSelected = document.querySelector('.a');
-firstSelected.classList.add('selected');
-
-
-
-
-
 
 
 //escutador de Eventos, clique na cor
-let clickedColor = document.getElementsByClassName("color");
 
-for (i = 0; i < clickedColor.length; i += 1) {
-    clickedColor[i].addEventListener('change', recebeClick);
-    console.log(clickedColor[i]);
-}
+let colorPalette = document.getElementsByClassName("color");
 
-let selectedColor = clickedColor[i];
+function selectedColor (event) {
 
-function recebeClick() {
+    //resolvido com a ajuda de meus colegas
+    let element = document.getElementsByClassName("color");
     
-    firstSelected.classList.remove('selected');
-    selectedColor.classList.add('selected');
+    for (let i = 0; i < element.length; i++) {
+        element[i].classList.remove("selected");
+    }
+
+    let clicavel = event.target;
+    // colorPaletteItem.classList.add('selected');   
+
+    clicavel.classList.add('selected');
+    console.log(clicavel);
 }
+
+for (var y = 0; y < colorPalette.length ; y++) {
+    colorPaletteItem = colorPalette[y];
+    colorPaletteItem.addEventListener("click", selectedColor);
+}
+
+
+//Pintando os  Pixels
+
+function paintPixel (event) {
+    let selectedPixel = event.target;
+    selectedPixel.style.backgroundColor = window.getComputedStyle(document.querySelector(".selected")).getPropertyValue("background-color");
+}
+
+let selectedPixel = document.getElementsByClassName("pixel");
+
+for (let w = 0; w < selectedPixel.length; w++) {
+    selectedPixel[w].addEventListener("click", paintPixel)
+}
+
+
+//APAGANDO
+
+function cleanBoard () {
+    for (let z = 0; z < 5; z++) {
+        for (let x = 0; x < 5; x++) {
+            pixel[z,x]
+        }
+    }
+}
+
+let apagaBtn = document.getElementById("clear-board");
+
+apagaBtn.addEventListener("click", cleanBoard);
