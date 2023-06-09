@@ -5,7 +5,7 @@
 const pixelBoard = document.querySelector('#pixel-board');
 
 for (let i = 0; i < 5; i += 1) {
-  for (let x = 0; x < 5; x += 1) {
+  for (let x = 0; x < 9; x += 1) {
     const pixelUnit = document.createElement('div');
     pixelUnit.classList.add('pixel');
 
@@ -15,7 +15,7 @@ for (let i = 0; i < 5; i += 1) {
   pixelBoard.appendChild(breakPoint);
 }
 
-// ADDING EVENT LISTENER TO COLOR PALETTE
+// SELECTING COLOR
 
 function selectedColor(event) {
   // deselect  the previous color
@@ -31,15 +31,6 @@ function selectedColor(event) {
   targettedcolor.classList.add('selected');
 }
 
-// Color Palette
-
-const colorPalette = document.getElementsByClassName('color');
-
-for (let index = 0; index < colorPalette.length; index += 1) {
-  const colorPaletteItem = colorPalette[index];
-  colorPaletteItem.addEventListener('click', selectedColor);
-}
-
 // PAINTING BOARD
 
 function paintPixel(event) {
@@ -49,24 +40,31 @@ function paintPixel(event) {
     .getPropertyValue('background-color');
 }
 
-// Adding listener to each pixel
+// CLEANING BOARD
+
+const pixels = document.getElementsByClassName('pixel');
+
+function cleanBoard() {
+  for (let index = 0; index < pixels.length; index += 1) {
+    pixels[index].style.backgroundColor = 'white';
+  }
+}
+
+// LISTENERS
+
+// clean-button
+document.getElementById('clear-board').addEventListener('click', cleanBoard);
+
+// color-palette
+const colorPalette = document.getElementsByClassName('color');
+
+for (let index = 0; index < colorPalette.length; index += 1) {
+  colorPalette[index].addEventListener('click', selectedColor);
+}
+
+// pixels
 const selectedPixel = document.getElementsByClassName('pixel');
 
 for (let index = 0; index < selectedPixel.length; index += 1) {
   selectedPixel[index].addEventListener('click', paintPixel);
 }
-
-// CLEANING BOARD
-
-const qtdPixel = document.getElementsByClassName('pixel');
-
-function cleanBoard() {
-  for (let index = 0; index < qtdPixel.length; index += 1) {
-    qtdPixel[index].style.backgroundColor = 'white';
-  }
-}
-
-// Adding listener to button
-const apagaBtn = document.getElementById('clear-board');
-
-apagaBtn.addEventListener('click', cleanBoard);
