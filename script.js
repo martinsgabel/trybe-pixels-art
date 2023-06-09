@@ -1,68 +1,72 @@
-var pixelBoard = document.querySelector('#pixel-board');
+// CREATING PIXEL BOARD
 
-//descobri como adicionar uma classe juntamente com o elemento com a ajuda de uma resposta desta fonte: https://stackoverflow.com/questions/55224589/document-createelementdiv-with-a-class 
+// descobri como adicionar uma classe juntamente com o elemento com a ajuda de uma resposta desta fonte: https://stackoverflow.com/questions/55224589/document-createelementdiv-with-a-class
+
+const pixelBoard = document.querySelector('#pixel-board');
+
 for (let i = 0; i < 5; i += 1) {
-    for (let x = 0; x < 5; x += 1) {
-        let pixelUnit = document.createElement('div');
-        pixelUnit.classList.add('pixel');
-        
-        pixelBoard.appendChild(pixelUnit);
-    }
-    let breakPoint = document.createElement('br');
-    pixelBoard.appendChild(breakPoint);
+  for (let x = 0; x < 5; x += 1) {
+    const pixelUnit = document.createElement('div');
+    pixelUnit.classList.add('pixel');
+
+    pixelBoard.appendChild(pixelUnit);
+  }
+  const breakPoint = document.createElement('br');
+  pixelBoard.appendChild(breakPoint);
 }
 
+// ADDING EVENT LISTENER TO COLOR PALETTE
 
+function selectedColor(event) {
+  // deselect  the previous color
+  const element = document.getElementsByClassName('color');
 
-//escutador de Eventos, clique na cor
+  for (let i = 0; i < element.length; i += 1) {
+    element[i].classList.remove('selected');
+  }
 
-let colorPalette = document.getElementsByClassName("color");
+  // selecting the new color
+  const targettedcolor = event.target;
 
-function selectedColor (event) {
-
-    //resolvido com a ajuda de meus colegas
-    let element = document.getElementsByClassName("color");
-    
-    for (let i = 0; i < element.length; i++) {
-        element[i].classList.remove("selected");
-    }
-
-    let clicavel = event.target;
-    // colorPaletteItem.classList.add('selected');   
-
-    clicavel.classList.add('selected');
-    console.log(clicavel);
+  targettedcolor.classList.add('selected');
 }
 
-for (var y = 0; y < colorPalette.length ; y++) {
-    colorPaletteItem = colorPalette[y];
-    colorPaletteItem.addEventListener("click", selectedColor);
+// Color Palette
+
+const colorPalette = document.getElementsByClassName('color');
+
+for (let index = 0; index < colorPalette.length; index += 1) {
+  const colorPaletteItem = colorPalette[index];
+  colorPaletteItem.addEventListener('click', selectedColor);
 }
 
+// PAINTING BOARD
 
-//Pintando os  Pixels
-
-function paintPixel (event) {
-    let selectedPixel = event.target;
-    selectedPixel.style.backgroundColor = window.getComputedStyle(document.querySelector(".selected")).getPropertyValue("background-color");
+function paintPixel(event) {
+  const selectedPixel = event.target;
+  selectedPixel.style.backgroundColor = window
+    .getComputedStyle(document.querySelector('.selected'))
+    .getPropertyValue('background-color');
 }
 
-let selectedPixel = document.getElementsByClassName("pixel");
+// Adding listener to each pixel
+const selectedPixel = document.getElementsByClassName('pixel');
 
-for (let w = 0; w < selectedPixel.length; w++) {
-    selectedPixel[w].addEventListener("click", paintPixel)
+for (let index = 0; index < selectedPixel.length; index += 1) {
+  selectedPixel[index].addEventListener('click', paintPixel);
 }
 
+// CLEANING BOARD
 
-//APAGANDO
+const qtdPixel = document.getElementsByClassName('pixel');
 
-function cleanBoard () {
-    for (let z = 0; z < qtdPixel.length; z++) {
-        qtdPixel[z].style.backgroundColor = "white";
-    }
+function cleanBoard() {
+  for (let index = 0; index < qtdPixel.length; index += 1) {
+    qtdPixel[index].style.backgroundColor = 'white';
+  }
 }
 
-let apagaBtn = document.getElementById("clear-board");
-const qtdPixel = document.getElementsByClassName("pixel");
+// Adding listener to button
+const apagaBtn = document.getElementById('clear-board');
 
-apagaBtn.addEventListener("click", cleanBoard);
+apagaBtn.addEventListener('click', cleanBoard);

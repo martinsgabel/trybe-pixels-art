@@ -10,19 +10,27 @@
 <body>
     <h1 id="title">Paleta de Cores</h1>
 
-    <div id="color-palette">
-        <div class="color a selected"></div>
-        <div class="color b"></div>
-        <div class="color c"></div>
-        <div class="color d"></div>
-    </div>
+    <aside>
+        <div id="color-palette">
+            <div class="color a selected"></div>
+            <div class="color b"></div>
+            <div class="color c"></div>
+            <div class="color d"></div>
+        </div>
 
-    <div id="button">
-        <button id="clear-board">Limpar</button>
-    </div>
+        <div class="button">
+            <input placeholder="choose a size" />
+            <button id="resize-board">Resize</button>
+        </div>
+    
+        <div class="button">
+            <button id="clear-board">Limpar</button>
+        </div>
+    </aside>
 
-    <div id="pixel-board"></div>
-
+    <main>
+        <div id="pixel-board"></div>
+    </main>
     <script src="script.js"r></script>
 </body>
 </html>
